@@ -1,6 +1,5 @@
-# =====================================================
+
 # IMPORT LIBRARIES
-# =====================================================
 
 import streamlit as st
 import pandas as pd
@@ -9,34 +8,26 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 import pydeck as pdk 
 
-# =====================================================
 # PAGE CONFIGURATION
-# =====================================================
 
 st.set_page_config(
     page_title="ONGC Production Dashboard",
     layout="wide"
 )
 
-# =====================================================
 # SIDEBAR
-# =====================================================
 
 st.sidebar.title("ONGC Dashboard")
 st.sidebar.info(
     "Smart Production Monitoring & Forecasting System"
 )
 
-# =====================================================
 # LOAD DATA
-# =====================================================
 
 df = pd.read_csv("production_data.csv")
 latest = df.iloc[-1]
 
-# =====================================================
 # ASSET LOCATION DATA
-# =====================================================
 
 asset_locations = pd.DataFrame({
     "Asset": [
@@ -65,9 +56,7 @@ asset_locations = pd.DataFrame({
     ]
 })
 
-# =====================================================
 # TITLE
-# =====================================================
 
 st.title("🛢️ ONGC Production Analysis Dashboard")
 
@@ -77,9 +66,7 @@ st.markdown(
 
 st.divider()
 
-# =====================================================
 # ASSET SELECTION
-# =====================================================
 
 asset_display = st.selectbox(
     "Select Asset",
@@ -100,9 +87,7 @@ asset_mapping = {
 
 asset = asset_mapping[asset_display]
 
-# =====================================================
 # KPI CARDS
-# =====================================================
 
 if asset == "MumbaiHigh":
 
@@ -141,9 +126,7 @@ col4.metric("GOR", f"{gor}")
 
 st.divider()
 
-# =====================================================
 # PRODUCTION TREND
-# =====================================================
 
 st.subheader("Production Trend Across Assets")
 
@@ -166,9 +149,7 @@ st.plotly_chart(
 
 st.divider()
 
-# =====================================================
 # RESERVOIR PRESSURE
-# =====================================================
 
 st.subheader(
     "Reservoir Pressure Trend",
@@ -198,9 +179,7 @@ st.plotly_chart(
 
 st.divider()
 
-# =====================================================
 # WATER CUT
-# =====================================================
 
 st.subheader(
     "Water Cut Trend",
@@ -230,9 +209,7 @@ st.plotly_chart(
 
 st.divider()
 
-# =====================================================
 # GOR ANALYSIS
-# =====================================================
 
 st.subheader(
     "Gas Oil Ratio (GOR) Trend",
@@ -262,9 +239,7 @@ st.plotly_chart(
 
 st.divider()
 
-# =====================================================
 # ASSET PRODUCTION
-# =====================================================
 
 st.subheader(f"{asset_display} Monthly Production")
 
@@ -282,9 +257,7 @@ st.plotly_chart(
 
 st.divider()
 
-# =====================================================
 # REVENUE ESTIMATION
-# =====================================================
 
 oil_price = st.slider(
     "Crude Oil Price ($/Barrel)",
@@ -304,9 +277,7 @@ st.metric(
 
 st.divider()
 
-# =====================================================
 # ASSET RANKING
-# =====================================================
 
 ranking_df = pd.DataFrame({
     "Asset": [
@@ -339,13 +310,8 @@ st.dataframe(
 
 st.divider()
 
-# =====================================================
 # ONGC ASSET MAP
-# =====================================================
 
-# =====================================================
-# INTERACTIVE ONGC MAP
-# =====================================================
 
 st.subheader("Interactive ONGC Asset Map")
 
@@ -440,9 +406,7 @@ st.pydeck_chart(
 
 st.divider()
 
-# =====================================================
 # PRODUCTION FORECAST
-# =====================================================
 
 st.subheader(
     "Production Forecast (Next 6 Months)",
@@ -524,9 +488,7 @@ st.plotly_chart(
 
 st.divider()
 
-# =====================================================
 # PRODUCTION DECLINE ANALYSIS
-# =====================================================
 
 st.subheader("Production Decline Analysis")
 
@@ -559,9 +521,7 @@ else:
 st.divider()
 
 
-# =====================================================
 # MAINTENANCE RECOMMENDATION
-# =====================================================
 
 st.subheader("Maintenance Recommendation")
 
@@ -608,9 +568,7 @@ with st.expander("How is this recommendation generated?"):
 st.divider()
 
 
-# =====================================================
 # FOOTER
-# =====================================================
 
 st.markdown("---")
 
